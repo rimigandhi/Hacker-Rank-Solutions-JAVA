@@ -1,0 +1,52 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    static int theLoveLetterMystery(String s){
+       int length = s.length();
+       int i = length/2 - 1;
+       int j = 0;
+       if(length % 2 == 0 ){
+           j=length/2;
+       }
+        else{
+            j=length/2+1 ;
+        }
+        int count = 0;
+       while(i>=0 && j<=length-1){
+           char first = s.charAt(i);
+           char second = s.charAt(j);
+               if(first>second){
+                   int diff = first-second;
+                   count += diff;
+                   i--;
+                   j++;
+               }
+               else if(first<second){
+                   int diff = second-first;
+                   count += diff;
+                   i--;
+                   j++;
+               }
+           else{
+               i--;
+               j++;
+           }
+       }
+       return count;
+    }
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int q = in.nextInt();
+        for(int a0 = 0; a0 < q; a0++){
+            String s = in.next();
+            int result = theLoveLetterMystery(s);
+            System.out.println(result);
+        }
+    }
+}
