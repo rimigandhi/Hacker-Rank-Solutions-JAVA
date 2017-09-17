@@ -1,0 +1,93 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+   static String isValid(String s){
+       
+        boolean flag = false;
+        Map<Character,Integer> m1 = new HashMap<Character,Integer>();
+        
+        for(int i=0;i<s.length();i++){
+            char c = s.charAt(i);
+            Integer value = m1.get(new Character(c));
+            if(value!=null){
+                m1.put(c,value+1);
+            }
+            else{
+                m1.put(c,1);
+            }
+        }
+     
+       Set<Integer> st = new HashSet<Integer>();
+       
+       for(int v1 : m1.values()){
+           st.add(v1);
+       }
+       
+      if(st.size()>2){
+          flag = true;
+      }
+       else if(st.size()==1){
+           flag = false;
+       }
+       else{
+
+            int f1 = 0;
+            int f2 = 0;
+            int f1Count = 0;
+            int f2Count = 0;
+            int i = 0;
+            for(int n : st)
+            {
+                if(i == 0){
+                     f1 = n;
+                }
+                else {
+                    f2 = n;
+                }
+                
+                i++;
+            }
+            
+            for(int freq : m1.values())
+            {
+                if(freq == f1) {
+                    f1Count++;
+                }
+                if(freq == f2){
+                    f2Count++;
+                } 
+            }
+            
+            
+            
+            if((f1 == 1 && f1Count == 1 ) || (f2 == 1 && f2Count == 1 ))
+            {flag = false;}
+            else if ((Math.abs(f1 - f2)  == 1) && (f1Count == 1 || f2Count == 1))
+            { flag = false;}
+            else
+            {flag = true;}
+        }
+           
+
+       
+       if(flag == true){
+           return "NO";
+       }
+       else{
+           return "YES";
+       }
+       
+    }
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        String s = in.next();
+        String result = isValid(s);
+        System.out.println(result); 
+    }
+}
