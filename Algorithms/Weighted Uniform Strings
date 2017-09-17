@@ -1,0 +1,41 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        String s = in.next();
+        int n = in.nextInt();
+        
+       Set<Integer> sumList = new HashSet<Integer>();
+       char prev = s.charAt(0);
+       sumList.add(prev-'a'+1);
+       int sum = prev-'a'+1;
+       for(int i=1;i<s.length();i++){
+           char next = s.charAt(i);
+           if(prev == next){
+               sum += prev-'a'+1;
+               sumList.add(sum);
+           }
+           else{
+               sumList.add(next-'a'+1);
+               sum = next-'a'+1;
+               prev = next;
+           }
+       }
+        
+       for(int a0 = 0; a0 < n; a0++){
+            int x = in.nextInt();
+           if(sumList.contains(x)){
+               System.out.println("Yes");
+           }
+           else{
+               System.out.println("No");
+           }
+        }
+    }
+}
