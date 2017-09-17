@@ -1,0 +1,32 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int n = in.nextInt();
+        String s = in.next();
+        int k = in.nextInt();
+        char a[] = s.toCharArray();
+        StringBuilder sb = new StringBuilder();
+        for(int i=0;i<a.length;i++){
+            char ascii = a[i];
+            if(ascii>='a' && ascii<='z'){
+                char c = (char)((((int)ascii-(int)'a'+k)%26)+(int)'a');
+                sb.append(c);
+            }
+            else if(ascii>='A' && ascii<='Z'){
+                 char c = (char)((((int)ascii-(int)'A'+k)%26)+(int)'A');
+                 sb.append(c);
+            }
+            else{
+               sb.append(a[i]); 
+            }
+        }
+        System.out.println(sb.toString());
+    }
+}
