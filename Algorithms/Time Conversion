@@ -1,0 +1,21 @@
+import java.io.*;
+import java.util.*;
+import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.text.ParseException;
+    
+public class Solution {
+
+    public static void main(String[] args) throws ParseException{
+         Scanner scanner = new Scanner(System.in);
+         String dateValue = scanner.next();
+         
+         SimpleDateFormat sdf =  new SimpleDateFormat("hh:mm:ssaa"); 
+         Date date = sdf.parse(dateValue);
+         SimpleDateFormat sdf1=new SimpleDateFormat("HH:mm:ss");
+         String date2=sdf1.format(date);
+         System.out.println(date2);
+     
+      
+    }
+}
