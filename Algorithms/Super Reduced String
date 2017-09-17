@@ -1,0 +1,62 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    static String super_reduced_string(String s){
+      
+        if(s == null){
+            return "Empty String";
+        }
+        else{
+          if(s.length()==1){
+              return s;
+          }
+            
+            else{
+                
+                Stack<String> stack1 = new Stack<String>();
+                stack1.add(""+s.charAt(0));
+                int i=1;
+                
+                while(i<s.length()){
+                    if(stack1.isEmpty()){
+                        stack1.add(""+ s.charAt(i));
+                    }
+                    else{
+                    String top = stack1.peek();
+                    if(top.equals(""+s.charAt(i))){
+                        stack1.pop();
+                        }
+                        else{
+                            stack1.add(""+s.charAt(i));
+                        }
+                    }
+                    i++;
+                }
+                String reverse = "";
+                if(stack1.isEmpty()){
+                    System.out.println("Empty String");
+                }
+                else{
+                while(!(stack1.isEmpty())){
+                    reverse = reverse + stack1.pop();
+                }
+                }
+               reverse = new StringBuilder(reverse).reverse().toString();
+               return reverse;
+                
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        String s = in.next();
+        String result = super_reduced_string(s);
+        System.out.println(result);
+    }
+}
